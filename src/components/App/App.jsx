@@ -1,6 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { PrivateRoute } from './PrivateRoute.jsx';
@@ -31,11 +31,15 @@ import { setSavedArticles } from '../../redux/usersSlice/usersSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { setNavigator } from '../../utils/navigateHelper.js';
 
+// ⭐ ДОДАЙТЕ ЦЕЙ ІМПОРТ
+import { analytics } from '../../utils/analytics.js';
+
 export const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const savedArticles = useSelector(selectSavedArticles);
   const navigate = useNavigate();
+  const location = useLocation(); // ⭐ ДОДАЙТЕ ЦЕ
 
   useEffect(() => {
     if (user?.savedArticles?.length > 0 && savedArticles.length === 0) {
@@ -50,6 +54,16 @@ export const App = () => {
   useEffect(() => {
     setNavigator(navigate);
   }, [navigate]);
+
+  // ⭐ ДОДАЙТЕ ЦЕЙ useEffect - ініціалізація аналітики
+  useEffect(() => {
+    analytics.init();
+  }, []);
+
+  // ⭐ ДОДАЙТЕ ЦЕЙ useEffect - трекінг переходів між сторінками
+  useEffect(() => {
+    analytics.trackPageView(location.pathname);
+  }, [location.pathname]);
 
   return (
     <>

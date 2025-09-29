@@ -10,6 +10,8 @@ import ModalError from '../ModalErrorSave/ModalErrorSave.jsx';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { toast } from 'react-toastify';
+// ⭐ ДОДАЙТЕ ЦЕЙ ІМПОРТ
+import { analytics } from '../../utils/analytics';
 
 const ButtonAddToBookmarks = ({
   articleId,
@@ -38,11 +40,15 @@ const ButtonAddToBookmarks = ({
     try {
       if (isSaved) {
         await dispatch(removeSavedArticle(articleId)).unwrap();
+        // ⭐ ТРЕКІНГ ВИДАЛЕННЯ З ОБРАНИХ
+        analytics.trackRemoveFromFavorites(articleId, ownerId);
       } else {
         await dispatch(saveArticle(articleId)).unwrap();
+        // ⭐ ТРЕКІНГ ДОДАВАННЯ В ОБРАНІ
+        analytics.trackAddToFavorites(articleId, ownerId);
       }
     } catch (error) {
-      toast.error('Failed to update saved articles. Please try again later.');
+      toast.error('Failed to update saved articles. Please try again.');
       console.error('Article processing error:', error);
     }
   };

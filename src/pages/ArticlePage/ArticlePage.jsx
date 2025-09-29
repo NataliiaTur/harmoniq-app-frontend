@@ -35,6 +35,13 @@ const ArticlePage = () => {
     dispatch(fetchArticleById(articleId));
   }, [dispatch, articleId]);
 
+  // ⭐ ДОДАЙТЕ ЦЕЙ useEffect - трекінг перегляду статті
+  useEffect(() => {
+    if (article && article._id && article.ownerId) {
+      analytics.trackArticleView(article._id, article.ownerId);
+    }
+  }, [article]); // трекаємо коли стаття завантажилась
+
   if (isLoading) return <LoaderPage />;
   if (error) return <p>Помилка: {error}</p>;
   if (!article) return <p>Статтю не знайдено</p>;

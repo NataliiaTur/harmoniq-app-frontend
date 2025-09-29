@@ -11,6 +11,7 @@
     "lint:styles": "stylelint \"src/**/*.{scss,css}\""
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^4.6.2",
     "@reduxjs/toolkit": "^2.8.2",
     "@tiptap/extension-color": "^3.0.9",
     "@tiptap/extension-highlight": "^3.0.7",
@@ -38,6 +39,8 @@
     "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
+    "reactflow": "^11.11.4",
+    "recharts": "^3.2.1",
     "redux-persist": "^6.0.0",
     "swiper": "^11.2.10",
     "yup": "^1.6.1"
