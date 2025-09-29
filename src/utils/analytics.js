@@ -1,4 +1,3 @@
-// src/utils/analytics.js
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 class Analytics {
@@ -38,7 +37,7 @@ class Analytics {
     const urlParams = new URLSearchParams(window.location.search);
     
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/analytics/session`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/analytics/session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -61,7 +60,7 @@ class Analytics {
     if (!this.isInitialized || !this.sessionId) return;
     
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/analytics/event`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/analytics/event`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
