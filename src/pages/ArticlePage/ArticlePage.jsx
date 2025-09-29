@@ -13,6 +13,7 @@ import {
   selectArticles,
 } from '../../redux/articlesSlice/articlesSelectors';
 import { RecommendedArticles } from '../../components/RecommendedArticles/RecommendedArticles';
+import { analytics } from '../../utils/analytics';
 
 const ArticlePage = () => {
   const { articleId } = useParams();

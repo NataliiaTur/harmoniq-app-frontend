@@ -17,6 +17,7 @@ import {
   selectArticlesPagination,
 } from '../../redux/articlesSlice/articlesSelectors';
 
+
 const ArticlesPage = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
