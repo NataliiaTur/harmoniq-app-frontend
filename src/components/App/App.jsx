@@ -49,10 +49,6 @@ export const App = () => {
   }, [user?.savedArticles, savedArticles.length, dispatch]);
 
   useEffect(() => {
-    dispatch(refreshThunk());
-  }, [dispatch]);
-
-  useEffect(() => {
     setNavigator(navigate);
   }, [navigate]);
 
