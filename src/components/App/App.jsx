@@ -22,6 +22,7 @@ const ArticlePage = lazy(() => import('../../pages/ArticlePage/ArticlePage'));
 const AuthorsPage = lazy(() => import('../../pages/AuthorsPage/AuthorsPage.jsx'));
 const AuthorProfilePage = lazy(() => import('../../pages/AuthorProfilePage/AuthorProfilePage.jsx'));
 const CreateArticlePage = lazy(() => import('../../pages/CreateArticlePage/CreateArticlePage.jsx'));
+const AnalyticsPage = lazy(() => import('../../pages/AnalyticsPage/AnalyticsPage.jsx'));
 
 import { LoaderPage } from '../Loader/LoaderPage/LoaderPage.jsx';
 import { refreshThunk } from '../../redux/authSlice/authOperations.js';
@@ -100,6 +101,10 @@ export const App = () => {
               path="create/:articleId"
               element={<PrivateRoute redirectTo="/register" component={<CreateArticlePage />} />}
             />
+            <Route
+          path="analytics"
+          element={<PrivateRoute redirectTo="/login" component={<AnalyticsPage />} />}
+          />
           </Route>
           <Route
             path="*"
@@ -123,6 +128,7 @@ export const App = () => {
               />
             }
           />
+        
         </Routes>
       </Suspense>
       <ToastContainer position="top-right" autoClose={3000} />

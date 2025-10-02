@@ -32,7 +32,9 @@ const slice = createSlice({
         state.isError = false;
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
-        state.user = action.payload;
+        const { accessToken, refreshToken, ...userData } = action.payload;
+
+        state.user = userData;
         state.refreshToken = action.payload.refreshToken;
         state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
@@ -48,7 +50,10 @@ const slice = createSlice({
         state.isError = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload;
+        // ⭐ ВИПРАВТЕ: не зберігайте весь payload в user
+        const { accessToken, refreshToken, ...userData } = action.payload;
+        
+        state.user = userData;
         state.refreshToken = action.payload.refreshToken;
         state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;

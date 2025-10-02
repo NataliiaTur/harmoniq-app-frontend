@@ -11,6 +11,11 @@ export const registerThunk = createAsyncThunk('auth/register', async (body, thun
     const loginResponse = await api.post('/auth/login', { email, password });
     const { accessToken } = loginResponse.data.data;
     TokenService.setAuthHeader(accessToken);
+    
+    console.log('🔑 Token set after login:', accessToken.substring(0, 20)); // ⭐ ДОДАЙТЕ
+    console.log('🔍 Check token in api:', api.defaults.headers.common.Authorization); // ⭐ ДОДАЙТЕ
+    
+
     return loginResponse.data.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(handleError(error));
@@ -23,9 +28,29 @@ export const loginThunk = createAsyncThunk('auth/login', async (body, thunkAPI) 
       email: body.email,
       password: body.password,
     });
-    const { accessToken } = response.data.data;
-    TokenService.setAuthHeader(accessToken);
-    return response.data.data;
+
+     console.log('📦 Full response from backend:', response.data);
+    console.log('📦 response.data.data:', response.data.data);
+
+    // const { accessToken } = response.data.data; було
+
+    // Backend повертає: { status: 200, message: '...', data: user }
+    // де user = { _id, name, email, accessToken, refreshToken, ... }
+    const user = response.data.data;
+
+    TokenService.setAuthHeader(user.accessToken);
+    console.log('✅ Login successful, tokens:', {
+      accessToken: user.accessToken?.substring(0, 20),
+      refreshToken: user.refreshToken?.substring(0, 20)
+    });
+
+    // return response.data.data;
+    // ⭐ ПОВЕРНІТЬ ПРАВИЛЬНУ СТРУКТУРУ
+    return {
+      ...user, // весь user object (з _id, name, email і т.д.)
+      accessToken: user.accessToken,
+      refreshToken: user.refreshToken,
+    };
   } catch (error) {
     return thunkAPI.rejectWithValue(handleError(error));
   }
