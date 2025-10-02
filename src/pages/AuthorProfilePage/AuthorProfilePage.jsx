@@ -10,7 +10,7 @@ import { NothingFoundItemsInProfile } from '../../components/NothingFoundItemsIn
 import EditProfile from '../../components/EditProfile/EditProfile.jsx';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectProfileUser,
@@ -33,6 +33,7 @@ const AuthorProfilePage = () => {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const dispatch = useDispatch();
+   const navigate = useNavigate(); // ⭐ ДОДАЙТЕ
   const { authorId } = useParams();
 
   const profileUser = useSelector(selectProfileUser);
@@ -52,9 +53,16 @@ const AuthorProfilePage = () => {
     articlesInfoText = `${savedArticles?.length || 0} saved Articles`;
   } else if (activeTab === 'subscribers') {
     articlesInfoText = `${following?.length || 0} Subscriptions`;
+  } else if (activeTab === 'analytics' {
+    articlesInfoText = 'View your statistics';
   }
 
   const handleTabClick = (tab) => {
+    if (tab === 'analytics') {
+      navigate('/analytics'); 
+      return;
+    }
+
     setActiveTab(tab);
     if (tab === 'myArticles' && ownProfile) {
       dispatch(fetchArticlesByOwnerId(authorId));
@@ -139,6 +147,12 @@ const AuthorProfilePage = () => {
             >
               Subscribers
             </button>
+            <button 
+            className={clsx(s.tabBtn, activeTab === 'analytics' && s.activeTab)}
+        onClick={() => handleTabClick('analytics')}
+      >
+        Analytics
+      </button>
           </div>
         )}
 
