@@ -1,6 +1,5 @@
 import s from './AuthorProfilePage.module.css';
 import clsx from 'clsx';
-
 import { Loader } from '../../components/Loader/Loader.jsx';
 import { Container } from '../../components/Container/Container.jsx';
 import { AuthorsList } from '../../components/AuthorList/AuthorList.jsx';
@@ -53,7 +52,7 @@ const AuthorProfilePage = () => {
     articlesInfoText = `${savedArticles?.length || 0} saved Articles`;
   } else if (activeTab === 'subscribers') {
     articlesInfoText = `${following?.length || 0} Subscriptions`;
-  } else if (activeTab === 'analytics' {
+  } else if (activeTab === 'analytics') {
     articlesInfoText = 'View your statistics';
   }
 
