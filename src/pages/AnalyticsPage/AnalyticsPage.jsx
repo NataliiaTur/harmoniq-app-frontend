@@ -33,7 +33,7 @@ const AnalyticsPage = () => {
 
       setAnalytics(response.data);
     } catch (error) {
-      console.error('❌ Analytics fetch error:', {
+      console.error('Analytics fetch error:', {
       status: error.response?.status,
       message: error.response?.data?.message,
       fullError: error
@@ -74,13 +74,14 @@ const AnalyticsPage = () => {
       <Container>
         <h1 className={s.title}>Аналітика моїх матеріалів</h1>
 
-        {/* ⭐ ДОДАЙТЕ ЦЕЙ БЛОК */}
+        {/* Інфоблок дашборду */}
         <div className={s.infoHeader}>
           <h2>Що показує дашборд:</h2>
           <ul className={s.infoList}>
             <li><strong>Відвідувачів</strong> – кількість унікальних сесій, де переглядали ваші статті</li>
             <li><strong>Переглядів сторінок</strong> – загальна кількість переходів між сторінками</li>
             <li><strong>В обрані</strong> – скільки разів ваші статті додали в обрані</li>
+            <li><strong>Нових підписників</strong> – скільки разів на вас підписались за період</li>
             <li><strong>Конверсія</strong> – відсоток відвідувачів, які додали статтю в обрані</li>
             <li><strong>Середній час на сайті</strong> – скільки часу користувачі проводять на сайті</li>
             <li><strong>Джерела трафіку</strong> – звідки приходять відвідувачі (direct, Instagram, Facebook тощо)</li>
@@ -129,6 +130,10 @@ const AnalyticsPage = () => {
             value={analytics.favoritesCount}
             icon="⭐"
           />
+          <MetricCard 
+          title="Нових підписників"
+          value={analytics.followersCount}
+          icon="👤" />
           <MetricCard
             title="Конверсія"
             value={`${analytics.conversionRate}%`}

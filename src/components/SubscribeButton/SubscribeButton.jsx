@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/authSlice/authSelectors';
 import { addFollower, deleteFollower } from '../../redux/usersSlice/usersOperations';
+import { analytics } from '../../utils/analytics.js';
 import s from './SubscribeButton.module.css';
 
 const SubscribeButton = ({ authorId }) => {
@@ -15,12 +16,14 @@ const SubscribeButton = ({ authorId }) => {
 
   const handleClickSubscribe = () => {
     setIsFollowingLocal(true);
-    dispatch(addFollower(authorId));
+    await dispatch(addFollower(authorId));
+    analytics.trackFollow(authorId);
   };
 
   const handleClickUnsubscribe = () => {
     setIsFollowingLocal(false);
-    dispatch(deleteFollower(authorId));
+    await dispatch(deleteFollower(authorId));
+    analytics.trackUnfollow(authorId);
   };
 
   return isFollowingLocal ? (
