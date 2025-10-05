@@ -15,9 +15,11 @@ const SubscribeButton = ({ authorId }) => {
   }, [currentUser?.following, authorId]);
 
   const handleClickSubscribe = async () => {
+    console.log('About to track follow for:', authorId);
     setIsFollowingLocal(true); 
     await dispatch(addFollower(authorId));
     analytics.trackFollow(authorId);
+    console.log('Follow tracked');
   };
 
   const handleClickUnsubscribe = async () => {
