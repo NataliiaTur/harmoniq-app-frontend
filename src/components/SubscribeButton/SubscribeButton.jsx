@@ -14,13 +14,13 @@ const SubscribeButton = ({ authorId }) => {
     setIsFollowingLocal(currentUser?.following.includes(authorId));
   }, [currentUser?.following, authorId]);
 
-  const handleClickSubscribe = () => {
-    setIsFollowingLocal(true);
+  const handleClickSubscribe = async () => {
+    setIsFollowingLocal(true); 
     await dispatch(addFollower(authorId));
     analytics.trackFollow(authorId);
   };
 
-  const handleClickUnsubscribe = () => {
+  const handleClickUnsubscribe = async () => {
     setIsFollowingLocal(false);
     await dispatch(deleteFollower(authorId));
     analytics.trackUnfollow(authorId);
