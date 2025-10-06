@@ -1,19 +1,32 @@
-Harmoniq - Educational Content Platform
+Harmoniq - Content Sharing Platform
 
-A modern web application for sharing and discovering educational articles. Built with React, Redux, and Vite.
+# Analytics System (Individual Feature)
+Custom analytics implementation developed independently after team project completion (alternative to Google Analytics):
+
+User session tracking with browser fingerprinting
+Automatic event tracking (page views, scrolling, time on page)
+Manual event tracking for specific actions (favorites, subscriptions, article views)
+UTM parameter support for campaign tracking
+Privacy-focused approach with anonymous data collection
+Visual dashboard with charts and metrics
+
+
+A modern web application for creating, sharing, and discovering articles on any topic. Built with React, Redux, and Vite.
 Team project with individual post-development enhancement.
 Features
 For All Users
 
-Browse articles by categories and filters (popular, latest, etc.)
+Browse articles on diverse topics from various authors
 Search and discover content creators
 Responsive design for mobile and desktop
 Real-time article preview with syntax highlighting
 Save articles to favorites
+Subscribe to favorite authors
 
 For Content Creators
 
-Create and edit articles with rich text editor
+Create and publish articles on any topic
+Rich text editor for content creation
 Upload and manage article images via Cloudinary
 Track content performance with built-in analytics dashboard:
 
@@ -26,17 +39,7 @@ New subscribers tracking
 
 
 Manage subscriber base
-View personal profile with articles, saved content, and followers
-
-Analytics System (Individual Feature)
-Custom analytics implementation developed independently after team project completion (alternative to Google Analytics):
-
-User session tracking with browser fingerprinting
-Automatic event tracking (page views, scrolling, time on page)
-Manual event tracking for specific actions (favorites, subscriptions, article views)
-UTM parameter support for campaign tracking
-Privacy-focused approach with anonymous data collection
-Visual dashboard with charts and metrics
+Personal profile with published articles, saved content, and followers
 
 Tech Stack
 Core:
@@ -131,7 +134,7 @@ Saved articles and subscriptions
 Loading and error states
 
 Development History
-The core platform was developed as a team project. Following project completion, an analytics system was independently designed and implemented to provide content creators with insights into their audience and content performance.
+The core platform was developed as a team project to create a universal content-sharing platform where anyone can publish and read articles. Following project completion, an analytics system was independently designed and implemented to provide authors with insights into their audience and content performance.
 Backend Repository
 harmoniq-app-backend
 Deployment
