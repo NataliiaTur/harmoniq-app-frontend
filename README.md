@@ -1,6 +1,6 @@
 Harmoniq - Content Sharing Platform
 
-# Analytics System (Individual Feature)
+Analytics System (Individual Feature)
 Custom analytics implementation developed independently after team project completion (alternative to Google Analytics):
 
 User session tracking with browser fingerprinting
@@ -9,6 +9,7 @@ Manual event tracking for specific actions (favorites, subscriptions, article vi
 UTM parameter support for campaign tracking
 Privacy-focused approach with anonymous data collection
 Visual dashboard with charts and metrics
+
 
 
 A modern web application for creating, sharing, and discovering articles on any topic. Built with React, Redux, and Vite.
@@ -144,3 +145,4 @@ MIT
 Author
 Nataliia Tur
 Team project with independent analytics feature development
+
